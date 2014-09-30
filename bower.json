@@ -1,0 +1,18 @@
+{
+  "name": "string-saw",
+  "version": "0.0.0",
+  "authors": [
+    "Chad Scira <chadvscira@gmail.com>"
+  ],
+  "main": "rcs.js",
+  "license": "MIT",
+  "ignore": [
+    "lib",
+    "node_modules",
+    "test",
+    "Gruntfile.js",
+    "index.js",
+    "package.json",
+    "README.md",
+  ]
+}
