@@ -4,7 +4,7 @@
   "authors": [
     "Chad Scira <chadvscira@gmail.com>"
   ],
-  "main": "rcs.js",
+  "main": "dist/saw.js",
   "license": "MIT",
   "ignore": [
     "lib",
@@ -14,5 +14,6 @@
     "index.js",
     "package.json",
     "README.md"
-  ]
+  ],
+  "homepage": "https://github.com/icodeforlove/string-saw"
 }
