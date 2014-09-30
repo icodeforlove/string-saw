@@ -1,4 +1,4 @@
-# saw
+# string-saw
 
 provides an easy way to string together match/replacement operations in an error-free manner
 
