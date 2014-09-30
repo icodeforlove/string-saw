@@ -83,7 +83,7 @@ describe('Balancing', function() {
 		expect(saw('number 1234').match(/numbers (\d+)/).first().toBoolean()).toEqual(false);
 	});
 
-	it('can existing sawed object', function () {
+	it('can use existing sawed object', function () {
 		var sawed = saw('one two three').split(' ');
 
 		var reversed = sawed.map(function (string) {
