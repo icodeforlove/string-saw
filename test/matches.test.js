@@ -30,6 +30,10 @@ describe('Balancing', function() {
 		expect(saw('one two three').replace(' two', '').itemFromRight(0).toString()).toEqual('one three');
 	});
 
+	it('can replace an array of items', function () {
+		expect(saw('two two two').split(' ').replace(/two/g, 'three').join('-').toString()).toEqual('three-three-three');
+	});
+
 	it('can use join', function () {
 		expect(saw('one two three').split(' ').join('-').toString()).toEqual('one-two-three');
 	});
@@ -83,7 +87,7 @@ describe('Balancing', function() {
 		expect(saw('number 1234').match(/numbers (\d+)/).first().toBoolean()).toEqual(false);
 	});
 
-	it('can use existing sawed object', function () {
+	it('can existing sawed object', function () {
 		var sawed = saw('one two three').split(' ');
 
 		var reversed = sawed.map(function (string) {
