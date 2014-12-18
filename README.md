@@ -33,6 +33,7 @@ bower install string-saw
 - toArray (returns an array)
 - toNumber (returns a number)
 - toBoolean (returns a boolean value)
+- toObject (returns a hashmap of the current context, based on the provided arg names)
 
 ## examples
 

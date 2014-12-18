@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.0
+ * saw.js v0.0.2
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -141,9 +141,13 @@ var saw =
 		replace: function (match, replacement) {
 			var saw = new Saw(this._context);
 	
-			var context = this._contextToString(saw._context);
-	
-			saw._context = context.replace(match, replacement);
+			if (Array.isArray(saw._context)) {
+				saw._context = saw._context.map(function (string) {
+					return string.replace(match, replacement);
+				});
+			} else {
+				saw._context = this._contextToString(this._context).replace(match, replacement);
+			}
 	
 			return saw;
 		},
@@ -228,7 +232,7 @@ var saw =
 			if (Array.isArray(this._context)) {
 				return toArray(this._context);
 			} else if (this._context instanceof Matches) {
-				return toArray(this._context.matches);
+				return this._context.toArray();
 			} else {
 				return [this._context];
 			}
@@ -240,6 +244,20 @@ var saw =
 	
 		toBoolean: function () {
 			return !!this.toString();
+		},
+	
+		toObject: function () {
+			var props = Array.prototype.slice.call(arguments, 0),
+				array = this.toArray(),
+				object = {};
+	
+			if (props.length === array.length) {
+				array.forEach(function (value, index) {
+					object[props[index]] = value;
+				});
+			}
+	
+			return object;
 		},
 	
 		_contextToString: function (context) {
@@ -278,7 +296,7 @@ var saw =
 		item: function (index) {
 			var string;
 	
-			if (this.matches.length === 1) {
+			if (this.matches.length === 1 || this.match.global) {
 				string = this.matches[0];
 			} else if (this.matches.length > 1) {
 				string = this.matches[this.match.global ? index : index + 1];
@@ -290,10 +308,22 @@ var saw =
 		slice: function (begin, end) {
 			var results = [];
 	
-			if (this.matches.length === 1) {
+			if (this.matches.length === 1 || this.match.global) {
 				results = this.matches.slice(begin, end);
 			} else if (this.matches.length > 1) {
 				results = this.matches.slice(begin + 1, end);
+			}
+	
+			return results;
+		},
+	
+		toArray: function (begin, end) {
+			var results = [];
+	
+			if (this.matches.length === 1 || this.match.global) {
+				results = this.matches.slice(0);
+			} else if (this.matches.length > 1) {
+				results = this.matches.slice(1);
 			}
 	
 			return results;
@@ -307,7 +337,6 @@ var saw =
 			} else {
 				this.matches.forEach(function (item) {
 					if (item) {
-	
 						string += item;
 					}
 				});
