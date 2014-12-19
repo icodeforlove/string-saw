@@ -56,6 +56,7 @@ describe('Balancing', function() {
 
 	it('can use remove', function () {
 		expect(saw('one two three').remove('one', 'two').trim().toString()).toEqual('three');
+		expect(saw('test-one test-two').match(/\S+/g).remove('es', /-/).toArray()).toEqual(["ttone", "tttwo"]);
 	});
 
 	it('can trim results', function () {

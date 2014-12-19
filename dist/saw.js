@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.2
+ * saw.js v0.0.3
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -181,12 +181,16 @@ var saw =
 		remove: function () {
 			var saw = new Saw(this._context);
 	
-			var context = this._contextToString(saw._context),
+			var context = saw.toArray(),
 				matches = toArray(arguments);
 			
-			matches.forEach(function (match) {
-				match = typeof match === 'string' ? new RegExp(escapeRegExp(match), 'g') : match;
-				context = context.replace(match, '');
+			context = context.map(function (context) {
+				matches.forEach(function (match) {
+					match = typeof match === 'string' ? new RegExp(escapeRegExp(match), 'g') : match;
+					context = context.replace(match, '');
+				});
+	
+				return context;
 			});
 			
 			saw._context = context;

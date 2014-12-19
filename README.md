@@ -64,4 +64,9 @@ saw([' one ', ' two ', ' three '])
 	.trim()
 	.join(',')
 	.toString(); // returns "one,two,three"
+
+saw('John. Smith.')
+	.match(/\S+/g)
+	.remove('.')
+	.toObject('first', 'last'); // returns {first: "John", last: "Smith"}
 ```
