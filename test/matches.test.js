@@ -77,6 +77,7 @@ describe('Balancing', function() {
 
 	it('can use toArray', function () {
 		expect(saw('one two three').split(' ').toArray()).toEqual(['one', 'two', 'three']);
+		expect(saw('one two three').match(/\d{3}/).toArray()).toEqual([]);
 	});
 
 	it('can use toNumber', function () {

@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.3
+ * saw.js v0.0.4
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -238,7 +238,7 @@ var saw =
 			} else if (this._context instanceof Matches) {
 				return this._context.toArray();
 			} else {
-				return [this._context];
+				return this.toBoolean() ? [this._context] : [];
 			}
 		},
 	
