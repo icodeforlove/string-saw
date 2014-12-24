@@ -1,6 +1,6 @@
 var saw = require('../index');
 
-describe('Balancing', function() {
+describe('General', function() {
 	it('can perform a simple match', function() {
 		expect(saw('hello world').match('hello').toBoolean()).toEqual(true);
 		expect(saw('hell world').match('hello').toBoolean()).toEqual(false);

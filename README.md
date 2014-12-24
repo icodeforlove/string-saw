@@ -1,4 +1,4 @@
-# string-saw
+# string-saw [![Build Status](https://travis-ci.org/icodeforlove/string-saw.png?branch=master)](https://travis-ci.org/icodeforlove/string-saw)
 
 provides an easy way to string together match/replacement operations in an error-free manner
 
