@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.4
+ * saw.js v0.0.5
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -251,7 +251,7 @@ var saw =
 		},
 	
 		toObject: function () {
-			var props = Array.prototype.slice.call(arguments, 0),
+			var props = arguments.length === 1 && Array.isArray(arguments[0]) ? arguments[0] : Array.prototype.slice.call(arguments, 0),
 				array = this.toArray(),
 				object = {};
 	
