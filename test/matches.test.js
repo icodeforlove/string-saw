@@ -92,6 +92,7 @@ describe('General', function() {
 	it('can use toObject', function () {
 		expect(saw('number 1234').match(/number (\d{2})(\d{2})/).toObject()).toEqual({});
 		expect(saw('number 1234').match(/number (\d{2})(\d{2})/).toObject('one', 'two')).toEqual({one: '12', two: '34'});
+		expect(saw('number 1234').match(/number (\d{2})(\d{2})/).toObject(['one', 'two'])).toEqual({one: '12', two: '34'});
 	});
 
 	it('can existing sawed object', function () {
