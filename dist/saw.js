@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.5
+ * saw.js v0.0.6
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -300,7 +300,7 @@ var saw =
 		item: function (index) {
 			var string;
 	
-			if (this.matches.length === 1 || this.match.global) {
+			if (this.matches.length === 1) {
 				string = this.matches[0];
 			} else if (this.matches.length > 1) {
 				string = this.matches[this.match.global ? index : index + 1];

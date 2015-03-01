@@ -14,6 +14,7 @@ describe('General', function() {
 
 	it('can get the last result', function () {
 		expect(saw('one two three').split(' ').last().toString()).toEqual('three');
+		expect(saw('one two three').match(/one|two|three/g).last().toString()).toEqual('three');
 	});
 
 	it('can get the first result', function () {
@@ -24,6 +25,7 @@ describe('General', function() {
 		expect(saw('one two three').split(' ').itemFromRight(0).toString()).toEqual('three');
 		expect(saw('one two three').split(' ').itemFromRight(1).toString()).toEqual('two');
 		expect(saw('one two three').split(' ').itemFromRight(2).toString()).toEqual('one');
+		expect(saw('one two three').match(/one|two|three/g).itemFromRight(0).toString()).toEqual('three');
 	});
 
 	it('can replace an item', function () {
