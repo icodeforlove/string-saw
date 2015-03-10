@@ -44,6 +44,16 @@ describe('General', function() {
 		expect(saw('one two three').split(' ').map(function (item) {
 			return '(' + item + ')';
 		}).join(' ').toString()).toEqual('(one) (two) (three)');
+
+		expect(saw('one two three').split(' ').map(function (value, index, array) {
+			if (value === 'three') {
+				return array.slice(index - 1, index);
+			} else {
+				return -1;
+			}
+		}).filter(function (value) {
+			return value !== -1;
+		}).first().toString()).toEqual('two');
 	});
 
 	it('can use join', function () {
@@ -53,6 +63,10 @@ describe('General', function() {
 	it('can use filter', function () {
 		expect(saw('one two three').split(' ').filter(function (item) {
 			return item === 'two';
+		}).toString()).toEqual('two');
+
+		expect(saw('one two three').split(' ').filter(function (item, index, array) {
+			return item === 'two' && array[index + 1] === 'three';
 		}).toString()).toEqual('two');
 	});
 

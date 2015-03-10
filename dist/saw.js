@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.6
+ * saw.js v0.0.7
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -165,7 +165,11 @@ var saw =
 		map: function (func) {
 			var saw = new Saw(this._context);
 	
-			saw._context = saw.toArray().map(func);
+			// Note: adds array as a third param
+			var array = saw.toArray();
+			saw._context = array.map(function (item, index) {
+				return func(item, index, array);
+			});
 	
 			return saw;
 		},
@@ -173,7 +177,11 @@ var saw =
 		filter: function (func) {
 			var saw = new Saw(this._context);
 	
-			saw._context = saw.toArray().filter(func);
+			// Note: adds array as a third param
+			var array = saw.toArray();
+			saw._context = array.filter(function (item, index) {
+				return func(item, index, array);
+			});
 	
 			return saw;
 		},
