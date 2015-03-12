@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.7
+ * saw.js v0.0.8
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -265,7 +265,9 @@ var saw =
 	
 			if (props.length === array.length) {
 				array.forEach(function (value, index) {
-					object[props[index]] = value;
+					if (typeof value !== 'undefined') {
+						object[props[index]] = value;
+					}
 				});
 			}
 	
