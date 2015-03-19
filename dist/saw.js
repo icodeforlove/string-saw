@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.8
+ * saw.js v0.0.9
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -83,18 +83,37 @@ var saw =
 			this._context = object;
 		}
 	}
+	
+	function argumentsToArray (args) {
+		var result;
+		
+		if (args.length > 1) {
+			result = toArray(args);
+		} else if (Array.isArray(args[0])) {
+			result = args[0];
+		} else {
+			result = [args[0]];
+		}
+	
+		return result;
+	}
+	
 	Saw.prototype = {
 		match: function (match) {
-			var saw = new Saw(this._context);
+			var matchArray = argumentsToArray(arguments),
+				saw = new Saw(this._context),
+				context = this._contextToString(this._context);
 	
-			var context = this._contextToString(saw._context),
-				matches = context.match(match);
+			matchArray.some(function (match) {
+				var matches = context.match(match);
 	
-			if (!matches) {
-				saw._context = '';
-			} else {
-				saw._context = new Matches(matches, match);
-			}
+				if (!matches) {
+					saw._context = '';
+				} else {
+					saw._context = new Matches(matches, match);
+					return true;
+				}
+			});		
 	
 			return saw;
 		},
@@ -259,7 +278,7 @@ var saw =
 		},
 	
 		toObject: function () {
-			var props = arguments.length === 1 && Array.isArray(arguments[0]) ? arguments[0] : Array.prototype.slice.call(arguments, 0),
+			var props = argumentsToArray(arguments),
 				array = this.toArray(),
 				object = {};
 	
