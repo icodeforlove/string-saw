@@ -6,6 +6,24 @@ describe('General', function() {
 		expect(saw('hell world').match('hello').toBoolean()).toEqual(false);
 	});
 
+	it('can use each method', function() {
+		var results = [];
+
+		saw('hello world hello').match(/\b\S+\b/g).each(function (value, index, array) {
+			results.push([value, index, array]);
+		});
+
+		expect(results).toEqual([["hello",0,["hello","world","hello"]],["world",1,["hello","world","hello"]],["hello",2,["hello","world","hello"]]]);
+
+		results = [];
+
+		saw('hello world hello').match(/foobar/g).each(function (value, index, array) {
+			results.push([value, index, array]);
+		});
+
+		expect(results).toEqual([]);
+	});
+
 	it('can perform an array of matches', function () {
 		expect(saw('hello world').match('whattt', 'hello').toBoolean()).toEqual(true);
 		expect(saw('hell world').match('whattt', 'hello').toBoolean()).toEqual(false);

@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.9
+ * saw.js v0.0.10
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -177,6 +177,20 @@ var saw =
 			if (Array.isArray(saw._context)) {
 				saw._context = saw._context.join(separator || '');
 			}
+	
+			return saw;
+		},
+	
+		each: function (func) {
+			var saw = new Saw(this._context);
+	
+			// Note: adds array as a third param
+			var array = saw.toArray();
+			array.forEach(function (item, index) {
+				if (item) {
+					func(item, index, array);
+				}
+			});
 	
 			return saw;
 		},
