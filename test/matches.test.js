@@ -103,6 +103,8 @@ describe('General', function() {
 
 	it('can trim results', function () {
 		expect(saw('one two three').match(/\S+\s*/g).trim().toString()).toEqual('onetwothree');
+		expect(saw(' one two ').match(/(\s*one\s*)(\s*two\s*)?/).trim().toArray()).toEqual(["one", "two"]);
+		expect(saw(' one tw ').match(/(\s*one\s*)(\s*two\s*)?/).trim().toArray()).toEqual(["one", undefined]);
 	});
 
 	it('can split string', function () {
@@ -137,7 +139,28 @@ describe('General', function() {
 		expect(saw('number 1234').match(/number (\d{2})(\d{2})/).toObject(['one', 'two'])).toEqual({one: '12', two: '34'});
 		expect(saw('number 1234').match(/number (\d{2})(\d{2})(\d{2})?/).toObject(['one', 'two', 'two'])).toEqual({one: '12', two: '34'});
 		expect(saw('number 123456').match(/number (\d{2})(\d{2})(\d{2})?/).toObject(['one', 'two', 'two'])).toEqual({one: '12', two: '56'});
+		expect(saw('12').match(/(\d{2})/g).map(function (string) {
+			return '"' + string + '"';
+		}).toObject('one', 'two')).toEqual({ one : '"12"' });
+		expect(saw('1234').match(/(\d{2})/g).map(function (string) {
+			return '"' + string + '"';
+		}).toObject('one', 'two')).toEqual({ one : '"12"', two : '"34"' });
 	});
+
+	it('can use toLowerCase', function () {
+		expect(saw('number 1234').match(/number (\d{2})(\d{2})/).toObject()).toEqual({});
+		expect(saw('number 1234').match(/number (\d{2})(\d{2})/).toObject('one', 'two')).toEqual({one: '12', two: '34'});
+		expect(saw('number 1234').match(/number (\d{2})(\d{2})/).toObject(['one', 'two'])).toEqual({one: '12', two: '34'});
+		expect(saw('number 1234').match(/number (\d{2})(\d{2})(\d{2})?/).toObject(['one', 'two', 'two'])).toEqual({one: '12', two: '34'});
+		expect(saw('number 123456').match(/number (\d{2})(\d{2})(\d{2})?/).toObject(['one', 'two', 'two'])).toEqual({one: '12', two: '56'});
+		expect(saw('12').match(/(\d{2})/g).map(function (string) {
+			return '"' + string + '"';
+		}).toObject('one', 'two')).toEqual({ one : '"12"' });
+		expect(saw('One TWO ThReE').match(/\s*\S+\s*/g).lowerCase().trim().map(function (string) {
+			return '"' + string + '"';
+		}).toObject('one', 'two', 'three')).toEqual({ one : '"one"', two : '"two"', three : '"three"' });
+	});
+
 
 	it('can use existing sawed object', function () {
 		var sawed = saw('one two three').split(' ');

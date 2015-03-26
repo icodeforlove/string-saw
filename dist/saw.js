@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.10
+ * saw.js v0.0.11
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -207,6 +207,18 @@ var saw =
 			return saw;
 		},
 	
+		lowerCase: function (func) {
+			var saw = new Saw(this._context);
+	
+			// Note: adds array as a third param
+			var array = saw.toArray();
+			saw._context = array.map(function (item, index) {
+				return item ? item.toLowerCase() : item;
+			});
+	
+			return saw;
+		},
+	
 		filter: function (func) {
 			var saw = new Saw(this._context);
 	
@@ -245,7 +257,7 @@ var saw =
 			var context = Array.isArray(saw._context) ? saw._context : saw.toArray(saw._context);
 	
 			saw._context = context.map(function (item) {
-				return item.trim();
+				return item ? item.trim() : item;
 			});
 	
 			return saw;
@@ -296,13 +308,11 @@ var saw =
 				array = this.toArray(),
 				object = {};
 	
-			if (props.length === array.length) {
-				array.forEach(function (value, index) {
-					if (typeof value !== 'undefined') {
-						object[props[index]] = value;
-					}
-				});
-			}
+			props.forEach(function (value, index) {
+				if (typeof value !== 'undefined' && typeof array[index] != 'undefined') {
+					object[value] = array[index] ;
+				}
+			});
 	
 			return object;
 		},
