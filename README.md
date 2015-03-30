@@ -28,6 +28,7 @@ bower install string-saw
 - join (works normally if context is an array)
 - each (works normally if context is an array)
 - filter (works normally if context is an array)
+- reduce (works normally if context is an array)
 - slice (works normally if context is an array)
 - split (works normally if context is an array)
 - toString (returns a string)

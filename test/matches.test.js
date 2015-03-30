@@ -96,6 +96,12 @@ describe('General', function() {
 		}).toString()).toEqual('two');
 	});
 
+	it('can use reduce', function () {
+		expect(saw('0 1 2 3 4').split(' ').reduce(function(previousValue, currentValue, index, array) {
+		  return parseInt(previousValue, 10) + parseInt(currentValue, 10);
+		}).toString()).toEqual('10');
+	});
+
 	it('can use remove', function () {
 		expect(saw('one two three').remove('one', 'two').trim().toString()).toEqual('three');
 		expect(saw('test-one test-two').match(/\S+/g).remove('es', /-/).toArray()).toEqual(["ttone", "tttwo"]);
@@ -147,20 +153,36 @@ describe('General', function() {
 		}).toObject('one', 'two')).toEqual({ one : '"12"', two : '"34"' });
 	});
 
-	it('can use toLowerCase', function () {
-		expect(saw('number 1234').match(/number (\d{2})(\d{2})/).toObject()).toEqual({});
-		expect(saw('number 1234').match(/number (\d{2})(\d{2})/).toObject('one', 'two')).toEqual({one: '12', two: '34'});
-		expect(saw('number 1234').match(/number (\d{2})(\d{2})/).toObject(['one', 'two'])).toEqual({one: '12', two: '34'});
-		expect(saw('number 1234').match(/number (\d{2})(\d{2})(\d{2})?/).toObject(['one', 'two', 'two'])).toEqual({one: '12', two: '34'});
-		expect(saw('number 123456').match(/number (\d{2})(\d{2})(\d{2})?/).toObject(['one', 'two', 'two'])).toEqual({one: '12', two: '56'});
-		expect(saw('12').match(/(\d{2})/g).map(function (string) {
+	it('can use lowerCase', function () {
+		expect(saw('One TWO').lowerCase().toString()).toEqual('one two');
+		expect(saw('One TWO').match(/(\S{3})/g).map(function (string) {
 			return '"' + string + '"';
-		}).toObject('one', 'two')).toEqual({ one : '"12"' });
+		}).lowerCase().toObject('one', 'two')).toEqual({ one : '"one"', two: '"two"' });
 		expect(saw('One TWO ThReE').match(/\s*\S+\s*/g).lowerCase().trim().map(function (string) {
 			return '"' + string + '"';
 		}).toObject('one', 'two', 'three')).toEqual({ one : '"one"', two : '"two"', three : '"three"' });
 	});
 
+	it('can use upperCase', function () {
+		expect(saw('One TWO').upperCase().toString()).toEqual('ONE TWO');
+		expect(saw('One TWO').match(/(\S{3})/g).map(function (string) {
+			return '"' + string + '"';
+		}).upperCase().toObject('one', 'two')).toEqual({ one : '"ONE"', two: '"TWO"' });
+		expect(saw('One TWO ThReE').match(/\s*\S+\s*/g).upperCase().trim().map(function (string) {
+			return '"' + string + '"';
+		}).toObject('one', 'two', 'three')).toEqual({ one : '"ONE"', two : '"TWO"', three : '"THREE"' });
+	});
+
+	it('can use this with array methods', function () {
+		expect(saw('one two').split(' ').map(function (item) {return this[item];}, {one: 'ONE', two: 'TWO'}).toArray()).toEqual(['ONE', 'TWO']);
+		expect(saw('one two').split(' ').filter(function (item) {return this[item];}, {one: 'ONE', two: 'TWO'}).toArray()).toEqual(['one', 'two']);
+		var items = {};
+		expect(saw('one two').split(' ').each(function (item) {items[item] = this[item];}, {one: 'ONE', two: 'TWO'}).toArray());
+		expect(items).toEqual({one: 'ONE', two: 'TWO'});
+		expect(saw('0 1 2 3 4').split(' ').reduce(function(previousValue, currentValue, index, array) {
+			return parseInt(previousValue, 10) + parseInt(this[index], 10);
+		}, {'0': 0, '1': 2, '2': 4, '3': 6, '4': 8}).toString()).toEqual('20');
+	});
 
 	it('can use existing sawed object', function () {
 		var sawed = saw('one two three').split(' ');
