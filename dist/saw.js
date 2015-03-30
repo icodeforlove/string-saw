@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.12
+ * saw.js v0.0.13
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -233,7 +233,7 @@ var saw =
 			// Note: adds array as a third param
 			var array = saw.toArray();
 			saw._context = array.map(function (item, index) {
-				return item ? item[methodName]() : item;
+				return item ? String(item)[methodName]() : item;
 			});
 	
 			return saw;

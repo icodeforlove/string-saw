@@ -168,6 +168,7 @@ describe('General', function() {
 		expect(saw('One TWO').match(/(\S{3})/g).map(function (string) {
 			return '"' + string + '"';
 		}).upperCase().toObject('one', 'two')).toEqual({ one : '"ONE"', two: '"TWO"' });
+		expect(saw('a b c').split(' ').map(function () {return 9;}).upperCase().toArray()).toEqual(['9', '9', '9']);
 		expect(saw('One TWO ThReE').match(/\s*\S+\s*/g).upperCase().trim().map(function (string) {
 			return '"' + string + '"';
 		}).toObject('one', 'two', 'three')).toEqual({ one : '"ONE"', two : '"TWO"', three : '"THREE"' });
