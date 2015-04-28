@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.13
+ * saw.js v0.0.14
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -316,7 +316,31 @@ var saw =
 		},
 	
 		toNumber: function () {
-			return parseInt(this.toString(), 10);
+			var result = this.toFloat();
+			
+			return isNaN(result) ? 0 : result;
+		},
+	
+		toFloat: function () {
+			var string = this.toString(),
+				result = parseFloat(string, 10);
+	
+			if (isNaN(result) || string.length != String(result).length) {
+				return NaN;
+			} else {
+				return result;
+			}
+		},
+	
+		toInt: function () {
+			var string = this.toString(),
+				result = parseInt(string, 10);
+	
+			if (isNaN(result) || string.length != String(result).length) {
+				return NaN;
+			} else {
+				return result;
+			}
 		},
 	
 		toBoolean: function () {

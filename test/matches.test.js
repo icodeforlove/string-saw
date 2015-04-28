@@ -132,6 +132,20 @@ describe('General', function() {
 
 	it('can use toNumber', function () {
 		expect(saw('number 1234').match(/number (\d+)/).first().toNumber()).toEqual(1234);
+		expect(saw('number 12.34').match(/number ([0-9.]+)/).first().toNumber()).toEqual(12.34);
+		expect(saw('number 12.34').match(/number/).first().toNumber()).toEqual(0);
+		expect(saw('number 12.34').match(/number/).first().toNumber()).toEqual(0);
+	});
+
+	it('can use toInt', function () {
+		expect(saw('number 12.34').match(/number ([0-9]+)/).first().toInt()).toEqual(12);
+		expect(saw('number 12.34').match(/number ([0-9.]+)/).first().toInt()).toBeNaN();
+		expect(saw('number 12.34').match(/number/).first().toInt()).toBeNaN();
+	});
+
+	it('can use toFloat', function () {
+		expect(saw('number 12.34').match(/number ([0-9.]+)/).first().toFloat()).toEqual(12.34);
+		expect(saw('number 12.34').match(/number/).first().toFloat()).toBeNaN();
 	});
 
 	it('can use toBoolean', function () {

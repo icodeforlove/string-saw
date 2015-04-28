@@ -33,7 +33,9 @@ bower install string-saw
 - split (works normally if context is an array)
 - toString (returns a string)
 - toArray (returns an array)
-- toNumber (returns a number)
+- toNumber (returns a number, returns 0 of no match)
+- toInt (returns a int)
+- toFloat (returns a float)
 - toBoolean (returns a boolean value)
 - toObject (returns a hashmap of the current context, based on the provided arg names)
 
