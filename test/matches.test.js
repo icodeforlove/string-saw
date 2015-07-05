@@ -177,6 +177,13 @@ describe('General', function() {
 		}).toObject('one', 'two', 'three')).toEqual({ one : '"one"', two : '"two"', three : '"three"' });
 	});
 
+	it('can use reverse', function () {
+		expect(saw('hello world').reverse().toString()).toEqual('dlrow olleh');
+		expect(saw(['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']).reverse().toString()).toEqual('dlrow olleh');
+		expect(saw('hello world').match(/(h)(e)(l)(l)(o)( )(w)(o)(r)(l)(d)/).reverse().toString()).toEqual('dlrow olleh');
+		expect(saw('hello world').match(/hello world/).reverse().toString()).toEqual('dlrow olleh');
+	});
+
 	it('can use upperCase', function () {
 		expect(saw('One TWO').upperCase().toString()).toEqual('ONE TWO');
 		expect(saw('One TWO').match(/(\S{3})/g).map(function (string) {

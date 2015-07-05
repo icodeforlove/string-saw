@@ -31,6 +31,10 @@ bower install string-saw
 - reduce (works normally if context is an array)
 - slice (works normally if context is an array)
 - split (works normally if context is an array)
+- upperCase
+- lowerCase
+- reverse 
+
 - toString (returns a string)
 - toArray (returns an array)
 - toNumber (returns a number, returns 0 of no match)
