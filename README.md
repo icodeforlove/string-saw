@@ -34,7 +34,6 @@ bower install string-saw
 - upperCase
 - lowerCase
 - reverse 
-
 - toString (returns a string)
 - toArray (returns an array)
 - toNumber (returns a number, returns 0 of no match)
