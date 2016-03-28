@@ -43,6 +43,9 @@ bower install string-saw
 - toBoolean (returns a boolean value)
 - toObject (returns a hashmap of the current context, based on the provided arg names)
 
+- indexOf (returns index if context is array, supports regexp)
+- indexesOf (returns array of indexes if context is array, supports regexp)
+
 ## examples
 
 ```javascript

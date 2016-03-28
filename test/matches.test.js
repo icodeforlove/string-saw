@@ -220,4 +220,12 @@ describe('General', function() {
 		expect(reversed).toEqual('eno owt eerht');
 		expect(uppercase).toEqual('ONE TWO THREE');
 	});
+
+	it('can find indexes of strings in array', function() {
+		expect(saw('hello world').split(' ').indexOf('hello')).toEqual(0);
+		expect(saw('hello world foo').split(' ').indexOf('foo')).toEqual(2);
+		expect(saw('hello world').split(' ').indexOf('bar')).toEqual(-1);
+		expect(saw('hello world').split(' ').indexesOf(/hello|world/)).toEqual([0,1]);
+		expect(saw('hello world').split(' ').indexesOf(/bar/)).toEqual([]);
+	});
 });
