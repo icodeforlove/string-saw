@@ -227,5 +227,11 @@ describe('General', function() {
 		expect(saw('hello world').split(' ').indexOf('bar')).toEqual(-1);
 		expect(saw('hello world').split(' ').indexesOf(/hello|world/)).toEqual([0,1]);
 		expect(saw('hello world').split(' ').indexesOf(/bar/)).toEqual([]);
+		expect(saw('hello world').split(' ').indexesOf(function (item) {
+			return item === 'hello';
+		})).toEqual([0]);
+		expect(saw('hello world foo').split(' ').indexOf(function (item) {
+			return item === 'foo';
+		})).toEqual(2);
 	});
 });

@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.16
+ * saw.js v0.0.17
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -393,7 +393,7 @@ var saw =
 	
 			if (Array.isArray(this._context)) {
 				this._context.forEach(function (item, i) {
-					if (String(item).match(match)) {
+					if (String(item).match(match) || typeof match === 'function' && match(item)) {
 						indexes.push(i);
 					}
 				});
