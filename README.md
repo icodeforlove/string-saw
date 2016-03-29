@@ -16,33 +16,33 @@ bower install string-saw
 
 ## methods
 
-- match (functions just like string match method: context will run .join('') if its still in array format)
-- replace (functions just like string replace method: context will run .join('') if its still in array format)
-- remove (helper for .replace(/abc/g, ''))
-- map (easy way to run map on matches)
-- item (run after match to get a specific index)
-- itemFromRight (run after match to get a specific index)
-- first (run after match to get a specific index)
-- last (run after match to get a specific index)
-- trim (can trim against array, or single match)
-- join (works normally if context is an array)
-- each (works normally if context is an array)
-- filter (works normally if context is an array)
-- reduce (works normally if context is an array)
-- slice (works normally if context is an array)
-- split (works normally if context is an array)
-- upperCase
-- lowerCase
-- reverse 
-- toString (returns a string)
-- toArray (returns an array)
-- toNumber (returns a number, returns 0 of no match)
-- toInt (returns a int)
-- toFloat (returns a float)
-- toBoolean (returns a boolean value)
-- toObject (returns a hashmap of the current context, based on the provided arg names)
-- indexOf (returns index if context is array, supports regexp and functions)
-- indexesOf (returns array of indexes if context is array, regexp and functions)
+- match (Array/String/Saw source) -> Saw
+- replace (RegExp/String match, String/Function replacement) -> Saw
+- remove (String/RegExp [match]) -> Saw
+- map (Function func) -> Saw
+- item (Integer index) -> Saw
+- itemFromRight (Integer offset) -> Saw
+- first () -> Saw
+- last () -> Saw
+- trim () -> Saw
+- join (String separator) -> Saw
+- each (Function func) -> Saw
+- filter(String/RegExp/Function match) -> Saw
+- reduce (Function func) -> Saw
+- slice (Integer start, Integer end) -> Saw
+- split (String/RegExp match) -> Saw
+- upperCase () -> Saw
+- lowerCase () -> Saw
+- reverse () -> Saw
+- toString () -> String
+- toArray (returns an array) -> Array
+- toNumber () -> Integer (0 if no match)
+- toInt () -> Integer (can return NaN)
+- toFloat () -> Float
+- toBoolean () -> Boolean
+- toObject () -> Object
+- indexOf (String/RegExp/Function match) -> Integer
+- indexesOf (String/RegExp/Function match) -> [Integer]
 
 ## examples
 

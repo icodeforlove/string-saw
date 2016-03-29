@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.17
+ * saw.js v0.0.18
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -258,13 +258,17 @@ var saw =
 			return saw;
 		},
 	
-		filter: function (func, thisArg) {
+		filter: function (match, thisArg) {
 			var saw = new Saw(this._context);
 	
 			// Note: adds array as a third param
 			var array = saw.toArray();
 			saw._context = array.filter(function (item, index) {
-				return func.bind(thisArg)(item, index, array);
+				if (typeof match === 'function') {
+					return match.bind(thisArg)(item, index, array);
+				} else {
+					return item.match(match);
+				}
 			});
 	
 			return saw;
@@ -313,9 +317,7 @@ var saw =
 		slice: function (begin, end) {
 			var saw = new Saw(this._context);
 	
-			if (saw._context instanceof Matches || Array.isArray(saw._context)) {
-				saw._context = saw._context.slice(begin, end);
-			}
+			saw._context = saw._context.slice(begin, end);
 	
 			return saw;
 		},
@@ -397,6 +399,15 @@ var saw =
 						indexes.push(i);
 					}
 				});
+			} else if (typeof this._context === 'string') {
+				var pattern = new RegExp(
+					match instanceof RegExp ? match.source : escapeRegExp(match),
+					match instanceof RegExp ? (String(match.flags).match(/g/) ? (match.flags || '') :(match.flags || '') + 'g') : 'g'
+				);
+	
+				while (match = pattern.exec(this._context)) {
+					indexes.push(match.index);
+				}
 			}
 	
 			return indexes;
