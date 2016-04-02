@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.18
+ * saw.js v0.0.19
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -116,6 +116,10 @@ var saw =
 			});		
 	
 			return saw;
+		},
+	
+		has: function (match) {
+			return this.match(match).first().toBoolean();
 		},
 	
 		item: function (index) {

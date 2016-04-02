@@ -157,6 +157,13 @@ describe('General', function() {
 		expect(saw('number 1234').match(/numbers (\d+)/).first().toBoolean()).toEqual(false);
 	});
 
+	it('can use has', function () {
+		expect(saw('number 1234').has(/number (\d+)/)).toEqual(true);
+		expect(saw('number 1234').has('number')).toEqual(true);
+		expect(saw('foo 1234').has(/number (\d+)/)).toEqual(false);
+		expect(saw('bar 1234').has('number')).toEqual(false);
+	});
+
 	it('can use toObject', function () {
 		expect(saw('number 1234').match(/number (\d{2})(\d{2})/).toObject()).toEqual({});
 		expect(saw('number 1234').match(/number (\d{2})(\d{2})/).toObject('one', 'two')).toEqual({one: '12', two: '34'});
