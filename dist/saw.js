@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.19
+ * saw.js v0.0.20
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -415,6 +415,14 @@ var saw =
 			}
 	
 			return indexes;
+		},
+	
+		length: function () {
+			if (!this._context) {
+				return 0;
+			} else {
+				return this._context.length;
+			}
 		},
 	
 		_contextToString: function (context) {

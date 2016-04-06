@@ -62,6 +62,11 @@ describe('General', function() {
 		expect(saw('two two two').split(' ').replace(/two/g, 'three').join('-').toString()).toEqual('three-three-three');
 	});
 
+	it('can get length', function () {
+		expect(saw('one two three').length()).toEqual(13);
+		expect(saw('one two three').split(' ').length()).toEqual(3);
+	});
+
 	it('can use join', function () {
 		expect(saw('one two three').split(' ').join('-').toString()).toEqual('one-two-three');
 	});

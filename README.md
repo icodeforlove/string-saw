@@ -34,6 +34,7 @@ bower install string-saw
 - upperCase () -> Saw
 - lowerCase () -> Saw
 - reverse () -> Saw
+- length () -> Integer
 - has (String/RegExp match) -> Boolean
 - toString () -> String
 - toArray (returns an array) -> Array
