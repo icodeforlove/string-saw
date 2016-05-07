@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.20
+ * saw.js v0.0.21
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -62,7 +62,7 @@ var saw =
 	
 	/**
 	 * Escapes a string to be used within a RegExp
-	 * 
+	 *
 	 * @param  {String} string
 	 * @return {String}
 	 */
@@ -86,7 +86,7 @@ var saw =
 	
 	function argumentsToArray (args) {
 		var result;
-		
+	
 		if (args.length > 1) {
 			result = toArray(args);
 		} else if (Array.isArray(args[0])) {
@@ -113,7 +113,7 @@ var saw =
 					saw._context = new Matches(matches, match);
 					return true;
 				}
-			});		
+			});
 	
 			return saw;
 		},
@@ -157,7 +157,7 @@ var saw =
 	
 		last: function () {
 			var saw = new Saw(this._context);
-		
+	
 			return saw.itemFromRight(0);
 		},
 	
@@ -225,7 +225,7 @@ var saw =
 	
 		reverse: function () {
 			var saw = new Saw(this._context);
-			
+	
 			if (typeof saw._context === 'string') {
 				saw._context = saw._context.split('').reverse().join('');
 			} else if (Array.isArray(saw._context)) {
@@ -235,7 +235,7 @@ var saw =
 				if (array.length === 1) {
 					saw._context = (array[0] || '').split('').reverse().join('');
 				} else {
-					saw._context = saw.toArray().reverse();	
+					saw._context = saw.toArray().reverse();
 				}
 			}
 	
@@ -283,7 +283,7 @@ var saw =
 	
 			var context = saw.toArray(),
 				matches = toArray(arguments);
-			
+	
 			context = context.map(function (context) {
 				matches.forEach(function (match) {
 					match = typeof match === 'string' ? new RegExp(escapeRegExp(match), 'g') : match;
@@ -292,9 +292,9 @@ var saw =
 	
 				return context;
 			});
-			
+	
 			saw._context = context;
-			
+	
 			return saw;
 		},
 	
@@ -342,12 +342,12 @@ var saw =
 	
 		toNumber: function () {
 			var result = this.toFloat();
-			
+	
 			return isNaN(result) ? 0 : result;
 		},
 	
 		toFloat: function () {
-			var string = this.toString(),
+			var string = this.trim().toString(),
 				result = parseFloat(string, 10);
 	
 			if (isNaN(result) || string.length != String(result).length) {
@@ -358,7 +358,7 @@ var saw =
 		},
 	
 		toInt: function () {
-			var string = this.toString(),
+			var string = this.trim().toString(),
 				result = parseInt(string, 10);
 	
 			if (isNaN(result) || string.length != String(result).length) {
@@ -439,6 +439,7 @@ var saw =
 	};
 	
 	module.exports = Saw;
+
 
 /***/ },
 /* 2 */
