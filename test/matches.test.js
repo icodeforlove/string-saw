@@ -108,6 +108,7 @@ describe('General', function() {
 
 		expect(saw('one two three').split(' ').filter(/one|three/).toArray()).toEqual(['one', 'three']);
 		expect(saw('one two three').split(' ').filter('two').toArray()).toEqual(['two']);
+		expect(saw('one two  three').split(' ').filter().toArray()).toEqual(['one', 'two', 'three']);
 	});
 
 	it('can use reduce', function () {

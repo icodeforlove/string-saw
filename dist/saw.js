@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.22
+ * saw.js v0.0.23
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -264,6 +264,9 @@ var saw =
 	
 		filter: function (match, thisArg) {
 			var saw = new Saw(this._context);
+	
+			// default filter
+			match = match || function (item) {return item};
 	
 			// Note: adds array as a third param
 			var array = saw.toArray();
