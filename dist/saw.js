@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.21
+ * saw.js v0.0.22
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -105,7 +105,7 @@ var saw =
 				context = this._contextToString(this._context);
 	
 			matchArray.some(function (match) {
-				var matches = context.match(match);
+				var matches = typeof match === 'function' ? match(context) : context.match(match);
 	
 				if (!matches) {
 					saw._context = '';

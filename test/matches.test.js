@@ -4,6 +4,12 @@ describe('General', function() {
 	it('can perform a simple match', function() {
 		expect(saw('hello world').match('hello').toBoolean()).toEqual(true);
 		expect(saw('hell world').match('hello').toBoolean()).toEqual(false);
+		expect(saw('hell world').match(function (string) {
+			return string.match('hell');
+		}).toBoolean()).toEqual(true);
+		expect(saw('hell world').match(function (string) {
+			return string.match('hello');
+		}).toBoolean()).toEqual(false);
 	});
 
 	it('can use each method', function() {
@@ -169,6 +175,12 @@ describe('General', function() {
 		expect(saw('number 1234').has('number')).toEqual(true);
 		expect(saw('foo 1234').has(/number (\d+)/)).toEqual(false);
 		expect(saw('bar 1234').has('number')).toEqual(false);
+		expect(saw('bar 1234').has(function (string) {
+			return string.match(/bar/);
+		})).toEqual(true);
+		expect(saw('bar 1234').has(function (string) {
+			return string.match(/number/);
+		})).toEqual(false);
 	});
 
 	it('can use toObject', function () {
