@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.23
+ * saw.js v0.0.24
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -179,7 +179,12 @@ var saw =
 			var saw = new Saw(this._context);
 	
 			if (Array.isArray(saw._context)) {
-				saw._context = saw._context.join(separator || '');
+				var result = '';
+				saw._context.forEach(function (item, index, array) {
+					var currentSeparator = typeof separator == 'function' ? separator(item, index, array) : separator || '';
+					result += item + (array.length - 1 == index ? '' : currentSeparator);
+				});
+				saw._context = result;
 			}
 	
 			return saw;

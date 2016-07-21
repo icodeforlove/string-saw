@@ -25,7 +25,7 @@ bower install string-saw
 - first () -> Saw
 - last () -> Saw
 - trim () -> Saw
-- join (String separator) -> Saw
+- join (String separator/Function separator) -> Saw
 - each (Function func) -> Saw
 - filter(String/RegExp/Function match) -> Saw
 - reduce (Function func) -> Saw

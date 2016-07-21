@@ -77,6 +77,12 @@ describe('General', function() {
 		expect(saw('one two three').split(' ').join('-').toString()).toEqual('one-two-three');
 	});
 
+	it('can use join function that returns different delimiters', function () {
+		expect(saw('one two three four five six').split(' ').join(function (item, index) {
+			return index % 2 == 1 ? ' ' : '-';
+		}).toString()).toEqual('one-two three-four five-six');
+	});
+
 	it('can use map', function () {
 		expect(saw('one two three').split(' ').map(function (item) {
 			return '(' + item + ')';
@@ -131,6 +137,10 @@ describe('General', function() {
 	it('can split string', function () {
 		expect(saw('one two three').split(' ').join('').toString()).toEqual('onetwothree');
 	});
+
+	// it('can split string and rejoin using its matched delimiter', function () {
+	// 	expect(saw('one-two three four-five').split(/-| /).join('').toString()).toEqual('onetwothree');
+	// });
 
 	it('can slice array', function () {
 		expect(saw('one two three').split(' ').slice(1).join(' ').toString()).toEqual('two three');
