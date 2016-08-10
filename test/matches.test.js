@@ -156,6 +156,11 @@ describe('General', function() {
 		expect(saw('one two three').match(/\d{3}/).toArray()).toEqual([]);
 	});
 
+	it('can operate on a number', function () {
+		expect(saw(2).match(/^\d+/).first().toNumber()).toEqual(2);
+		expect(saw(2).match(/^\d+/).first().toString()).toEqual('2');
+	});
+
 	it('can use toNumber', function () {
 		expect(saw('number 1234').match(/number (\d+)/).first().toNumber()).toEqual(1234);
 		expect(saw('number 12.34').match(/number ([0-9.]+)/).first().toNumber()).toEqual(12.34);

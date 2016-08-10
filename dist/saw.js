@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.24
+ * saw.js v0.0.25
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -75,7 +75,9 @@ var saw =
 	}
 	
 	function Saw (object) {
-		if (Array.isArray(object)) {
+		if (typeof object === 'number') {
+			this._context = String(object);
+		} else if (Array.isArray(object)) {
 			this._context = object.slice(0);
 		} else if (object instanceof Matches) {
 			this._context = object.clone();
