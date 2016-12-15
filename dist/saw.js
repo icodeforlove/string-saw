@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.25
+ * saw.js v0.0.26
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -166,12 +166,25 @@ var saw =
 		replace: function (match, replacement) {
 			var saw = new Saw(this._context);
 	
+			function replace(string, matches, replacement) {
+				matches = Array.isArray(matches) ? matches : [matches];
+	
+				matches.some(function (match) {
+					if (string.match(match)) {
+						string = string.replace(match, replacement);
+						return true;
+					}
+				});
+	
+				return string;
+			}
+	
 			if (Array.isArray(saw._context)) {
 				saw._context = saw._context.map(function (string) {
 					return string.replace(match, replacement);
 				});
 			} else {
-				saw._context = this._contextToString(this._context).replace(match, replacement);
+				saw._context = replace(this._contextToString(this._context), match, replacement);
 			}
 	
 			return saw;
@@ -332,6 +345,14 @@ var saw =
 			var saw = new Saw(this._context);
 	
 			saw._context = saw._context.slice(begin, end);
+	
+			return saw;
+		},
+	
+		transform: function (func) {
+			var saw = new Saw(this._context);
+	
+			saw._context = func(saw._context);
 	
 			return saw;
 		},

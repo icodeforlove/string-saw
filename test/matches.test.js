@@ -64,6 +64,23 @@ describe('General', function() {
 		expect(saw('one two three').replace(' two', '').itemFromRight(0).toString()).toEqual('one three');
 	});
 
+	it('can replace with a match set', function () {
+		expect(saw('one two three').replace([
+			/(one) (two) (four)/,
+			/(one) (two) (three)/
+		], '$1 $3').toString()).toEqual('one three');
+	});
+
+	it('can transform the context', function () {
+		expect(saw('one two three').match(/\S+/g).transform(function (context) {
+			if (context.length === 3) {
+				return 'pass';
+			} else {
+				return 'fail';
+			}
+		}).toString()).toEqual('pass');
+	});
+
 	it('can replace an array of items', function () {
 		expect(saw('two two two').split(' ').replace(/two/g, 'three').join('-').toString()).toEqual('three-three-three');
 	});

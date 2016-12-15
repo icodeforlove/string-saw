@@ -17,7 +17,7 @@ bower install string-saw
 ## methods
 
 - match (Array/String/Function/Saw) -> Saw
-- replace (RegExp/String match, String/Function replacement) -> Saw
+- replace (Array/RegExp/String match, String/Function replacement) -> Saw
 - remove (String/RegExp [match]) -> Saw
 - map (Function func) -> Saw
 - item (Integer index) -> Saw
@@ -31,6 +31,7 @@ bower install string-saw
 - reduce (Function func) -> Saw
 - slice (Integer start, Integer end) -> Saw
 - split (String/RegExp match) -> Saw
+- transform (Function func) -> Saw
 - upperCase () -> Saw
 - lowerCase () -> Saw
 - reverse () -> Saw
