@@ -14,6 +14,8 @@ or
 bower install string-saw
 ```
 
+or head over to **[cdnjs](https://cdnjs.com/libraries/string-saw)**
+
 ## methods
 
 - match (Array/String/Function/Saw) -> Saw
