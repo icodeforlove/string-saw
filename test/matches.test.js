@@ -134,6 +134,19 @@ describe('General', function() {
 		expect(saw('one two  three').split(' ').filter().toArray()).toEqual(['one', 'two', 'three']);
 	});
 
+	it('can use filterNot', function () {
+		expect(saw('one two three').split(' ').filterNot(function (item) {
+			return item === 'two';
+		}).join(' ').toString()).toEqual('one three');
+
+		expect(saw('one two three').split(' ').filterNot(function (item, index, array) {
+			return item === 'two' && array[index + 1] === 'three';
+		}).join(' ').toString()).toEqual('one three');
+
+		expect(saw('one two three').split(' ').filterNot(/one|three/).toArray()).toEqual(['two']);
+		expect(saw('one two three').split(' ').filterNot('two').toArray()).toEqual(['one', 'three']);
+	});
+
 	it('can use reduce', function () {
 		expect(saw('0 1 2 3 4').split(' ').reduce(function(previousValue, currentValue, index, array) {
 		  return parseInt(previousValue, 10) + parseInt(currentValue, 10);

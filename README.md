@@ -30,10 +30,11 @@ or head over to **[cdnjs](https://cdnjs.com/libraries/string-saw)**
 - join (String separator/Function separator) -> Saw
 - each (Function func) -> Saw
 - filter(String/RegExp/Function match) -> Saw
+- filterNot(String/RegExp/Function match) -> Saw
 - reduce (Function func) -> Saw
 - slice (Integer start, Integer end) -> Saw
 - split (String/RegExp match) -> Saw
-- transform (Function func) -> Saw
+- transform (Function context) -> Saw
 - upperCase () -> Saw
 - lowerCase () -> Saw
 - reverse () -> Saw

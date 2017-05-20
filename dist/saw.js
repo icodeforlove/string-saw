@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.26
+ * saw.js v0.0.27
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -295,6 +295,22 @@ var saw =
 					return match.bind(thisArg)(item, index, array);
 				} else {
 					return item.match(match);
+				}
+			});
+	
+			return saw;
+		},
+	
+		filterNot: function (match, thisArg) {
+			var saw = new Saw(this._context);
+	
+			// Note: adds array as a third param
+			var array = saw.toArray();
+			saw._context = array.filter(function (item, index) {
+				if (typeof match === 'function') {
+					return !match.bind(thisArg)(item, index, array);
+				} else {
+					return !item.match(match);
 				}
 			});
 	
