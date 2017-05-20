@@ -2,6 +2,8 @@
 
 provides an easy way to string together match/replacement operations in an error-free manner
 
+**[String Saw Sandbox](http://codepen.io/icodeforlove/full/rWPMPm/)**
+
 ## install
 
 ```
