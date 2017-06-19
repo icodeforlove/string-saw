@@ -100,6 +100,10 @@ describe('General', function() {
 		}).toString()).toEqual('one-two three-four five-six');
 	});
 
+	it('can use join on match sets', function () {
+		expect(saw('1902 foo bar 2010').match(/\d{4}/g).join(' - ').toString()).toEqual('1902 - 2010');
+	});
+
 	it('can use map', function () {
 		expect(saw('one two three').split(' ').map(function (item) {
 			return '(' + item + ')';

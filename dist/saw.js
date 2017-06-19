@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.27
+ * saw.js v0.0.28
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -191,14 +191,17 @@ var saw =
 		},
 	
 		join: function (separator) {
-			var saw = new Saw(this._context);
+			var saw = new Saw(this._context),
+				array = saw.toArray();
 	
-			if (Array.isArray(saw._context)) {
+			if (array.length) {
 				var result = '';
-				saw._context.forEach(function (item, index, array) {
+	
+				array.forEach(function (item, index, array) {
 					var currentSeparator = typeof separator == 'function' ? separator(item, index, array) : separator || '';
 					result += item + (array.length - 1 == index ? '' : currentSeparator);
 				});
+	
 				saw._context = result;
 			}
 	
