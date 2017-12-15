@@ -264,6 +264,11 @@ describe('General', function() {
 		expect(saw('hello world').match(/hello world/).reverse().toString()).toEqual('dlrow olleh');
 	});
 
+	it('can use sort', function () {
+		expect(saw('a ccc bb').split(' ').sort(function (a,b) {return b.length - a.length;}).join(' ').toString()).toEqual('ccc bb a');
+		expect(saw('a ccc bb').split(' ').sort(function (a,b) {return a.length - b.length;}).join(' ').toString()).toEqual('a bb ccc');
+	});
+
 	it('can use upperCase', function () {
 		expect(saw('One TWO').upperCase().toString()).toEqual('ONE TWO');
 		expect(saw('One TWO').match(/(\S{3})/g).map(function (string) {

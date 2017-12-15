@@ -1,5 +1,5 @@
 /**
- * saw.js v0.0.28
+ * saw.js v0.0.29
  */
 var saw =
 /******/ (function(modules) { // webpackBootstrap
@@ -259,6 +259,25 @@ var saw =
 					saw._context = (array[0] || '').split('').reverse().join('');
 				} else {
 					saw._context = saw.toArray().reverse();
+				}
+			}
+	
+			return saw;
+		},
+	
+		sort: function (func) {
+			var saw = new Saw(this._context);
+	
+			if (typeof saw._context === 'string') {
+				saw._context = saw._context.split('').sort(func).join('');
+			} else if (Array.isArray(saw._context)) {
+				saw._context = saw._context.sort(func);
+			} else if (saw._context instanceof Matches) {
+				var array = saw.toArray();
+				if (array.length === 1) {
+					saw._context = (array[0] || '').split('').sort(func).join('');
+				} else {
+					saw._context = saw.toArray().sort(func);
 				}
 			}
 	

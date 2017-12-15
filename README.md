@@ -40,6 +40,7 @@ or head over to **[cdnjs](https://cdnjs.com/libraries/string-saw)**
 - upperCase () -> Saw
 - lowerCase () -> Saw
 - reverse () -> Saw
+- sort (Function func) -> Saw
 - length () -> Integer
 - has (String/RegExp match/Function match) -> Boolean
 - toString () -> String
