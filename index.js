@@ -1,5 +1,3 @@
-var Saw = require('./lib/Saw');
+import Saw from './lib/Saw';
 
-module.exports = function (string) {
-	return new Saw(string);
-};
+export default string => new Saw(string);
