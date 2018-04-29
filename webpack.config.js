@@ -10,7 +10,7 @@ module.exports = [
 		output: {
 			path: `${__dirname}/dist/browser`,
 			filename: 'saw.js',
-			library: 'Saw'
+			library: 'saw'
 		},
 
 		module: {
