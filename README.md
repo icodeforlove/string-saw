@@ -39,6 +39,9 @@ or head over to **[cdnjs](https://cdnjs.com/libraries/string-saw)**
 - transform (Function context) -> Saw
 - upperCase () -> Saw
 - lowerCase () -> Saw
+- prepend (String) -> Saw
+- append (String) -> Saw
+- capitalize () -> Saw
 - reverse () -> Saw
 - sort (Function func) -> Saw
 - length () -> Integer

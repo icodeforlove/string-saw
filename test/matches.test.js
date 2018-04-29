@@ -269,6 +269,21 @@ describe('General', () => {
 		expect(saw('a ccc bb').split(' ').sort((a,b) => {return a.length - b.length;}).join(' ').toString()).toEqual('a bb ccc');
 	});
 
+	it('can use capitalize', () => {
+		expect(saw('hello world').capitalize().toString()).toEqual('Hello World');
+		expect(saw('hello world').split(' ').capitalize().toArray()).toEqual(['Hello', 'World']);
+	});
+
+	it('can prepend', () => {
+		expect(saw('world').prepend('hello ').toString()).toEqual('hello world');
+		expect(saw(['world', 'world']).prepend('hello ').toArray()).toEqual(['hello world', 'hello world']);
+	});
+
+	it('can append', () => {
+		expect(saw('hello').append(' world').toString()).toEqual('hello world');
+		expect(saw(['hello', 'hello']).append(' world').toArray()).toEqual(['hello world', 'hello world']);
+	});
+
 	it('can use upperCase', () => {
 		expect(saw('One TWO').upperCase().toString()).toEqual('ONE TWO');
 		expect(saw('One TWO').match(/(\S{3})/g).map(string => {
