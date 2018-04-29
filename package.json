@@ -1,6 +1,6 @@
 {
   "name": "string-saw",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "provides an easy way to string together match/replacement operations in an error-free manner",
   "main": "dist/node/saw.js",
   "scripts": {
