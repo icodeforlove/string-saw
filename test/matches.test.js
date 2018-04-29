@@ -1,4 +1,4 @@
-var saw = require('../index');
+var saw = require('../dist/node/saw');
 
 describe('General', function() {
 	it('can perform a simple match', function() {
