@@ -82,5 +82,50 @@ module.exports = [
 		},
 
 		devtool: 'source-map'
+	},
+
+	{
+		target: 'node',
+		mode: 'production',
+
+		node: {
+			__dirname: false,
+			__filename: false
+		},
+
+		entry: `${__dirname}/test/matches.test`,
+
+		output: {
+			path: `${__dirname}/test`,
+			filename: '.matches.test.js',
+			libraryTarget: 'commonjs2'
+		},
+
+		externals: [require('webpack-node-externals')()],
+
+		module: {
+			rules: [
+				{
+					test: /\.js$/,
+					use: {
+						loader: 'babel-loader',
+						options: {
+							presets: [
+								require('babel-preset-es2015'),
+								require('babel-preset-stage-0')
+							],
+							plugins: [
+								require('babel-plugin-transform-decorators-legacy').default,
+								require('babel-plugin-transform-decorators'),
+								require('babel-plugin-transform-class-properties'),
+								require('babel-plugin-add-module-exports'),
+							]
+						}
+					}
+				}
+			]
+		},
+
+		devtool: 'source-map'
 	}
 ];

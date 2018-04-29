@@ -4,7 +4,7 @@
   "description": "provides an easy way to string together match/replacement operations in an error-free manner",
   "main": "dist/node/saw.js",
   "scripts": {
-    "test": "./node_modules/.bin/jasmine test/matches.test.js",
+    "test": "./node_modules/.bin/jasmine test/.matches.test.js",
     "build": "./node_modules/.bin/webpack-cli; npm run test"
   },
   "author": {
