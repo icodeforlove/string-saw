@@ -1,10 +1,10 @@
 {
   "name": "string-saw",
-  "version": "0.0.28",
+  "version": "0.0.31",
   "authors": [
     "Chad Scira <chadvscira@gmail.com>"
   ],
-  "main": "dist/saw.js",
+  "main": "dist/browser/saw.js",
   "license": "MIT",
   "ignore": [
     "lib",
