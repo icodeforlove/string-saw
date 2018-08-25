@@ -1,6 +1,6 @@
 {
   "name": "string-saw",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "provides an easy way to string together match/replacement operations in an error-free manner",
   "main": "dist/node/saw.js",
   "scripts": {
@@ -17,22 +17,22 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "jasmine": "^3.1.0",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-decorators": "^6.24.1",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.0.15",
-    "webpack-node-externals": "^1.7.2"
+    "babel-loader": "7.1.4",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-decorators": "6.24.1",
+    "babel-plugin-transform-decorators-legacy": "1.3.4",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
+    "babel-plugin-transform-runtime": "6.23.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-stage-0": "6.24.1",
+    "jasmine": "3.1.0",
+    "webpack": "4.16.5",
+    "webpack-cli": "2.0.15",
+    "webpack-node-externals": "1.7.2"
   },
   "dependencies": {
-    "escape-string-regexp": "^1.0.5"
+    "escape-string-regexp": "1.0.5"
   },
   "npmName": "string-saw",
   "npmFileMap": [

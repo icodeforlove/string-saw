@@ -338,4 +338,8 @@ describe('General', () => {
 			return item === 'foo';
 		})).toEqual(2);
 	});
+
+	it('can match unescaped strings', () => {
+		expect(saw('(').match('(').first().toString()).toEqual('(');
+	});
 });
