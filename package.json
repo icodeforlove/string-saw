@@ -1,6 +1,6 @@
 {
   "name": "string-saw",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "provides an easy way to string together match/replacement operations in an error-free manner",
   "main": "dist/node/saw.js",
   "scripts": {
@@ -28,8 +28,9 @@
     "babel-preset-stage-0": "6.24.1",
     "jasmine": "3.1.0",
     "webpack": "4.16.5",
-    "webpack-cli": "2.0.15",
-    "webpack-node-externals": "1.7.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-node-externals": "1.7.2",
+    "babel-core": "^6.26.3"
   },
   "dependencies": {
     "escape-string-regexp": "1.0.5"
