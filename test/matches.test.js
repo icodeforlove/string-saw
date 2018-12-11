@@ -245,6 +245,7 @@ describe('General', () => {
 		expect(saw('1234').match(/(\d{2})/g).map(string => {
 			return '"' + string + '"';
 		}).toObject('one', 'two')).toEqual({ one : '"12"', two : '"34"' });
+		expect(saw('1999-20').match(/(?<year>[0-9]{4})-(?<month>[0-9]{2})/).toObject()).toEqual({ year: '1999', month: '20' });
 	});
 
 	it('can use lowerCase', () => {
