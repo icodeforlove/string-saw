@@ -29,6 +29,7 @@ or head over to **[cdnjs](https://cdnjs.com/libraries/string-saw)**
 - first () -> Saw
 - last () -> Saw
 - trim () -> Saw
+- uniq () -> Saw
 - join (String separator/Function separator) -> Saw
 - each (Function func) -> Saw
 - filter(String/RegExp/Function match) -> Saw

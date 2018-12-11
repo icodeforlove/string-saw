@@ -104,6 +104,10 @@ describe('General', () => {
 		expect(saw('1902 foo bar 2010').match(/\d{4}/g).join(' - ').toString()).toEqual('1902 - 2010');
 	});
 
+	it('can use uniq', () => {
+		expect(saw('10-20-30-40-40-10').match(/[0-9]{2}/g).uniq().toArray()).toEqual([ '10', '20', '30', '40' ]);
+	});
+
 	it('can use map', () => {
 		expect(saw('one two three').split(' ').map(item => {
 			return '(' + item + ')';
