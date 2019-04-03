@@ -32,6 +32,7 @@ or head over to **[cdnjs](https://cdnjs.com/libraries/string-saw)**
 - uniq () -> Saw
 - join (String separator/Function separator) -> Saw
 - each (Function func) -> Saw
+- find(String/RegExp/Function match) -> Saw
 - filter(String/RegExp/Function match) -> Saw
 - filterNot(String/RegExp/Function match) -> Saw
 - reduce (Function func) -> Saw

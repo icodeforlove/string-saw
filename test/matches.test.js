@@ -128,6 +128,20 @@ describe('General', () => {
 		expect(saw('one two three').split(' ').join('-').toString()).toEqual('one-two-three');
 	});
 
+	it('can use find', () => {
+		expect(saw('one two three').split(' ').find(item => {
+			return item === 'two';
+		}).toString()).toEqual('two');
+
+		expect(saw('one two three').split(' ').find((item, index, array) => {
+			return item === 'two' && array[index + 1] === 'three';
+		}).toString()).toEqual('two');
+
+		expect(saw('one two three').split(' ').find(/one|three/).toString()).toEqual('one');
+		expect(saw('one two three').split(' ').find('two').toString()).toEqual('two');
+		expect(saw('one two  three').split(' ').find().toString()).toEqual('one');
+	});
+
 	it('can use filter', () => {
 		expect(saw('one two three').split(' ').filter(item => {
 			return item === 'two';
