@@ -208,6 +208,13 @@ describe('General', () => {
 		expect(saw('one two three').match(/\d{3}/).toArray()).toEqual([]);
 	});
 
+	it('can use matchAll', () => {
+		expect(saw('joe:56, bob:57').matchAll(/(?<name>(\S+)):(?<age>(\d+))/g)).toEqual([{name: 'joe', age: '56'}, {name: 'bob', age: '57'}]);
+		expect(saw('joe:56, bob:57').split(', ').matchAll(/(?<name>(\S+)):(?<age>(\d+))/g)).toEqual([{name: 'joe', age: '56'}, {name: 'bob', age: '57'}]);
+		expect(saw('joe:56, bob:57').matchAll(/(\S+):(\d+)/g)).toEqual([['joe', '56'], ['bob', '57']]);
+		expect(saw('joe:56, bob:57').split(', ').matchAll(/(\S+):(\d+)/g)).toEqual([['joe', '56'], ['bob', '57']]);
+	});
+
 	it('can operate on a number', () => {
 		expect(saw(2).match(/^\d+/).first().toNumber()).toEqual(2);
 		expect(saw(2).match(/^\d+/).first().toString()).toEqual('2');

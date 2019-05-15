@@ -21,6 +21,7 @@ or head over to **[cdnjs](https://cdnjs.com/libraries/string-saw)**
 ## methods
 
 - match (Array/String/Function/Saw) -> Saw
+- matchAll (RegExp) -> [Array/Object]
 - replace (Array/RegExp/String match, String/Function replacement) -> Saw
 - remove (String/RegExp [match]) -> Saw
 - map (Function func) -> Saw
@@ -77,6 +78,25 @@ saw('1 2 3')
 	.split(' ')
 	.last()
 	.toNumber(); // returns the number 3
+
+saw('joe:56, bob:57')
+	.matchAll(/(?<name>(\S+)):(?<age>(\d+))/g) 
+	/* returns 
+	[
+		{name: 'joe', age: '56'},
+		{name: 'bob', age: '57'}
+	]
+	*/
+
+saw('joe:56, bob:57')
+	.matchAll(/(\S+):(\d+)/g) 
+	/* returns 
+	[
+		['joe', '56'],
+		['bob', '57']
+	]
+	*/
+
 
 saw('1 2 3 4 5')
 	.split(' ')
