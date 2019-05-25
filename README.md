@@ -49,6 +49,8 @@ or head over to **[cdnjs](https://cdnjs.com/libraries/string-saw)**
 - sort (Function func) -> Saw
 - length () -> Integer
 - has (String/RegExp match/Function match) -> Boolean
+- startsWith(String/[String]) -> Boolean
+- endsWith(String/[String]) -> Boolean
 - toString () -> String
 - toArray (returns an array) -> Array
 - toNumber () -> Integer (0 if no match)
