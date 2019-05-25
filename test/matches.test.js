@@ -258,6 +258,20 @@ describe('General', () => {
 		})).toEqual(false);
 	});
 
+	it('can use startsWith', () => {
+		expect(saw('foobar').startsWith('foo')).toEqual(true);
+		expect(saw('barfoo').startsWith('foo')).toEqual(false);
+		expect(saw(['barfoo', 'foobar']).startsWith('foo')).toEqual(false);
+		expect(saw(['foobarfoo', 'foobar']).startsWith('foo')).toEqual(true);
+	});
+
+	it('can use endsWith', () => {
+		expect(saw('foobar').endsWith('bar')).toEqual(true);
+		expect(saw('barfoo').endsWith('bar')).toEqual(false);
+		expect(saw(['barfoo', 'foobar']).endsWith('bar')).toEqual(false);
+		expect(saw(['barfoobar', 'foobar']).endsWith('bar')).toEqual(true);
+	});
+
 	it('can use toObject', () => {
 		expect(saw('number 1234').match(/number (\d{2})(\d{2})/).toObject()).toEqual({});
 		expect(saw('number 1234').match(/number (\d{2})(\d{2})/).toObject('one', 'two')).toEqual({one: '12', two: '34'});
