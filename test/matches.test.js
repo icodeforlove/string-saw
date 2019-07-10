@@ -266,6 +266,7 @@ describe('General', () => {
 		expect(saw(['foobarfoo', 'foobar']).startsWith()).toEqual(false);
 		expect(saw(['foobarfoo', 'foobar']).startsWith('')).toEqual(false);
 		expect(saw(['foobarfoo', 'foobar']).startsWith(undefined)).toEqual(false);
+		expect(saw(undefined).startsWith('foobar')).toEqual(false);
 	});
 
 	it('can use endsWith', () => {
@@ -276,6 +277,7 @@ describe('General', () => {
 		expect(saw(['barfoobar', 'foobar']).endsWith()).toEqual(false);
 		expect(saw(['barfoobar', 'foobar']).endsWith('')).toEqual(false);
 		expect(saw(['barfoobar', 'foobar']).endsWith(undefined)).toEqual(false);
+		expect(saw(undefined).endsWith('foobar')).toEqual(false);
 	});
 
 	it('can use toObject', () => {
