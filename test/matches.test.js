@@ -140,6 +140,7 @@ describe('General', () => {
 		expect(saw('one two three').split(' ').find(/one|three/).toString()).toEqual('one');
 		expect(saw('one two three').split(' ').find('two').toString()).toEqual('two');
 		expect(saw('one two  three').split(' ').find().toString()).toEqual('one');
+		expect(saw('one two (foo three').split(' ').find('(').toString()).toEqual('(foo');
 	});
 
 	it('can use filter', () => {
@@ -154,6 +155,7 @@ describe('General', () => {
 		expect(saw('one two three').split(' ').filter(/one|three/).toArray()).toEqual(['one', 'three']);
 		expect(saw('one two three').split(' ').filter('two').toArray()).toEqual(['two']);
 		expect(saw('one two  three').split(' ').filter().toArray()).toEqual(['one', 'two', 'three']);
+		expect(saw('one two (foo three').split(' ').filter('(').toArray()).toEqual(['(foo']);
 	});
 
 	it('can use filterNot', () => {
