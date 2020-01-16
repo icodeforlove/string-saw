@@ -391,6 +391,7 @@ describe('General', () => {
 		expect(saw('hello world foo').split(' ').indexOf(item => {
 			return item === 'foo';
 		})).toEqual(2);
+		expect(saw(['some', 'text', 'with', '(this']).indexOf('(this')).toEqual(3);
 	});
 
 	it('can match unescaped strings', () => {
