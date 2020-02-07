@@ -196,9 +196,12 @@ describe('General', () => {
 	// 	expect(saw('one-two three four-five').split(/-| /).join('').toString()).toEqual('onetwothree');
 	// });
 
-	it('can slice array', () => {
+	it('can slice array and strings and handle falsy values', () => {
 		expect(saw('one two three').split(' ').slice(1).join(' ').toString()).toEqual('two three');
 		expect(saw('one two three').slice(0,3).toString()).toEqual('one');
+		expect(saw(null).slice(0,3).toString()).toEqual('');
+		expect(saw(undefined).slice(0,3).toString()).toEqual('');
+		expect(saw(false).slice(0,3).toString()).toEqual('');
 	});
 
 	it('can use toString', () => {
