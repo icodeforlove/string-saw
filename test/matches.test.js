@@ -243,6 +243,8 @@ describe('General', () => {
 		expect(saw('number 12.34').match(/number ([0-9.]+)/).first().toFloat()).toEqual(12.34);
 		expect(saw('number 12.34').match(/number/).first().toFloat()).toBeNaN();
 		expect(saw("\t  12.34").toFloat()).toEqual(12.34);
+		expect(saw("\t  3.0").toFloat()).toEqual(3.0);
+		expect(saw("3.832").toFloat()).toEqual(3.832);
 	});
 
 	it('can use toBoolean', () => {
