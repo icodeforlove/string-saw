@@ -245,6 +245,7 @@ describe('General', () => {
 		expect(saw("\t  12.34").toFloat()).toEqual(12.34);
 		expect(saw("\t  3.0").toFloat()).toEqual(3.0);
 		expect(saw("3.832").toFloat()).toEqual(3.832);
+		expect(saw("1756.20").toFloat()).toEqual(1756.20);
 	});
 
 	it('can use toBoolean', () => {
