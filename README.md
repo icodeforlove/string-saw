@@ -1,29 +1,47 @@
-# string-saw [![Build Status](https://travis-ci.org/icodeforlove/string-saw.png?branch=master)](https://travis-ci.org/icodeforlove/string-saw)
+## string-saw
 
-provides an easy way to string together match/replacement operations in an error-free manner
+Provides an easy way to string together match/replacement operations in an error-free manner.
 
-**[String Saw Sandbox](http://codepen.io/icodeforlove/full/rWPMPm/)**
+### Install
 
-## install
-
-```
+```bash
 npm install string-saw
 ```
 
-or
+### Usage (ESM)
 
+```ts
+import saw from 'string-saw';
+
+const value = saw('one two three four five six hello 323423 hello')
+	.remove(/\d+/g, 'hello')
+	.split(' ')
+	.slice(3,4)
+	.toString(); // "four"
 ```
-bower install string-saw
+
+CommonJS consumers can use `require('string-saw').default`.
+
+### Single-file browser include (IIFE)
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/string-saw@0.0.46/dist/browser/saw.js"></script>
+<script>
+  // global function: window.stringSaw
+  const out = stringSaw('one two').split(' ').join('-').toString();
+  console.log(out); // "one-two"
+  // or locally alias:
+  const saw = window.stringSaw;
+  console.log(saw('hello world').match('hello').toBoolean()); // true
+</script>
 ```
 
-or head over to **[cdnjs](https://cdnjs.com/libraries/string-saw)**
+### Methods
 
-## methods
-
-- match (Array/String/Function/Saw) -> Saw
-- matchAll (RegExp) -> [Array/Object]
-- replace (Array/RegExp/String match, String/Function replacement) -> Saw
-- remove (String/RegExp [match]) -> Saw
+- match (Array/String/Function/RegExp) -> Saw
+- matchAll (RegExp) -> [Array|Object]
+- replace (Array|RegExp|String match, String|Function replacement) -> Saw
+- remove (String|RegExp [match]) -> Saw
 - map (Function func) -> Saw
 - item (Integer index) -> Saw
 - itemFromRight (Integer offset) -> Saw
@@ -31,14 +49,14 @@ or head over to **[cdnjs](https://cdnjs.com/libraries/string-saw)**
 - last () -> Saw
 - trim () -> Saw
 - uniq () -> Saw
-- join (String separator/Function separator) -> Saw
+- join (String separator|Function separator) -> Saw
 - each (Function func) -> Saw
-- find(String/RegExp/Function match) -> Saw
-- filter(String/RegExp/Function match) -> Saw
-- filterNot(String/RegExp/Function match) -> Saw
+- find (String|RegExp|Function match) -> Saw
+- filter (String|RegExp|Function match) -> Saw
+- filterNot (String|RegExp|Function match) -> Saw
 - reduce (Function func) -> Saw
 - slice (Integer start, Integer end) -> Saw
-- split (String/RegExp match) -> Saw
+- split (String|RegExp match) -> Saw
 - transform (Function context) -> Saw
 - upperCase () -> Saw
 - lowerCase () -> Saw
@@ -48,70 +66,47 @@ or head over to **[cdnjs](https://cdnjs.com/libraries/string-saw)**
 - reverse () -> Saw
 - sort (Function func) -> Saw
 - length () -> Integer
-- has (String/RegExp match/Function match) -> Boolean
-- startsWith(String/[String]) -> Boolean
-- endsWith(String/[String]) -> Boolean
+- has (String|RegExp|Function match) -> Boolean
+- startsWith (String|[String]) -> Boolean
+- endsWith (String|[String]) -> Boolean
 - toString () -> String
-- toArray (returns an array) -> Array
+- toArray () -> Array
 - toNumber () -> Integer (0 if no match)
 - toInt () -> Integer (can return NaN)
 - toFloat () -> Float
 - toBoolean () -> Boolean
 - toObject () -> Object
-- indexOf (String/RegExp/Function match) -> Integer
-- indexesOf (String/RegExp/Function match) -> [Integer]
+- indexOf (String|RegExp|Function match) -> Integer
+- indexesOf (String|RegExp|Function match) -> [Integer]
 
-## examples
+### Examples
 
-```javascript
-var saw = require('string-saw');
-
-saw('one two three four five six hello 323423 hello')
-	.remove(/\d+/g, 'hello')
-	.split(' ')
-	.slice(3,4)
-	.toString(); // returns "four"
+```ts
+import saw from 'string-saw';
 
 saw('1 2 3')
 	.match(/\d+$/)
-	.toNumber(); // returns the number 3
-
-saw('1 2 3')
-	.split(' ')
-	.last()
-	.toNumber(); // returns the number 3
+	.toNumber(); // 3
 
 saw('joe:56, bob:57')
-	.matchAll(/(?<name>(\S+)):(?<age>(\d+))/g) 
-	/* returns 
-	[
-		{name: 'joe', age: '56'},
-		{name: 'bob', age: '57'}
-	]
-	*/
-
-saw('joe:56, bob:57')
-	.matchAll(/(\S+):(\d+)/g) 
-	/* returns 
-	[
-		['joe', '56'],
-		['bob', '57']
-	]
-	*/
-
+	.matchAll(/(?<name>(\S+)):(?<age>(\d+))/g)
+// [
+//   { name: 'joe', age: '56' },
+//   { name: 'bob', age: '57' }
+// ]
 
 saw('1 2 3 4 5')
 	.split(' ')
 	.itemFromRight(2)
-	.toNumber(); // returns the number 3
+	.toNumber(); // 3
 
 saw([' one ', ' two ', ' three '])
 	.trim()
 	.join(',')
-	.toString(); // returns "one,two,three"
+	.toString(); // "one,two,three"
 
 saw('John. Smith.')
 	.match(/\S+/g)
 	.remove('.')
-	.toObject('first', 'last'); // returns {first: "John", last: "Smith"}
+	.toObject('first', 'last'); // { first: "John", last: "Smith" }
 ```
